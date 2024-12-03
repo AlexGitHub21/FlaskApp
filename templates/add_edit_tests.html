@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+
+    <form action="" method="post" class="form-contact">
+        {{ form.hidden_tag() }}
+        <p>{{ form.number_rows.label() }} {{ form.number_rows() }}</p>
+        <p>{{ form.number_seats.label() }}
+        {% if form.number_seats.errors %}
+            {{ form.number_seats(class='invalid') }}
+            <span class='invalid-feedback'>
+                {% for e in form.number_seats.errors %}
+                    {{ e }}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.number_seats() }}
+        {% endif %}</p>
+        <p>{{ form.number_visitors.label() }} {{ form.number_visitors() }}</p>
+        <p>{{ form.visitor_preferences.label() }}
+        {% if form.visitor_preferences.errors %}
+            {{ form.visitor_preferences(class='invalid') }}
+            <span class='invalid-feedback'>
+                {% for e in form.visitor_preferences.errors %}
+                    {{ e }}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.visitor_preferences() }}
+        {% endif %}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    {% for msg in get_flashed_messages() %}
+    <div class="flash">{{msg}}</div>
+    {% endfor %}
+
+    <table border="1">
+    <caption>Список тестов</caption>
+        <thead>
+            <tr>
+                <th>Количество рядов</th>
+                <th>Количество мест в каждом ряду</th>
+                <th>Количество посетителей</th>
+                <th>Предпочтения посетителей</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% if tests %}
+            {% for test in tests %}
+                <tr>
+                    <td>{{ test.number_rows }}</td>
+                    <td>{{ test.number_seats }}</td>
+                    <td>{{ test.number_visitors }}</td>
+                    <td>{{ test.visitor_preferences }}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="4">База данных пуста</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

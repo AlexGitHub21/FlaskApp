@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% block title -%}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% endif %}
+    {% endblock %}
+</head>
+<!-- Добавляем шапку сайта -->
+   <header class="header">
+     <!-- Добавляем контейнер -->
+     <div class="container">
+       <!-- Добавляем внутреннюю обёртку для выравнивания логотипа и меню -->
+       <div class="header__inner">
+         <!-- С помощью списка создаём навигационное меню -->
+         <nav class="menu">
+           <ul class="menu__list">
+             <li class="menu__list-item">
+               <a class="menu__list-link" href="{{ url_for('index') }}">Главная страница</a>
+             </li>
+             <li class="menu__list-item">
+               <a class="menu__list-link" href="{{ url_for('test') }}">Добавить тест</a>
+             </li>
+             <li class="menu__list-item">
+               <a class="menu__list-link" href="{{ url_for('list_tests') }}">Список тестов</a>
+             </li>
+           </ul>
+         </nav>
+       </div>
+     </div>
+   </header>
+<body>
+
+{% block content -%}
+
+{% endblock -%}
+</body>
+</html>

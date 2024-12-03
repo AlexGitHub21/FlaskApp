@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+
+<table border="1">
+    <caption>Список тестов</caption>
+        <thead>
+            <tr>
+                <th>Количество рядов</th>
+                <th>Количество мест в каждом ряду</th>
+                <th>Количество посетителей</th>
+                <th>Предпочтения посетителей</th>
+                <th>Получить ответ</th>
+                <th>Удалить тест</th>
+                <th>Изменить тест</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% if tests %}
+            {% for test in tests %}
+                <tr data-test-id="{{ test.id }}">
+                    <td>{{ test.number_rows }}</td>
+                    <td>{{ test.number_seats }}</td>
+                    <td>{{ test.number_visitors }}</td>
+                    <td>{{ test.visitor_preferences }}</td>
+                    <td><button type="button" id="get_answer" data-test_id="{{ test.id }}" class="btn btn-outline-primary">Получить ответ</button></td>
+                    <td><button type="button" id="delete_test" data-test_id="{{ test.id }}" class="btn btn-outline-primary">Удалить тест</button></td>
+                    <td><button type="button" id="change_test" data-test_id="{{ test.id }}" class="btn btn-outline-primary">Изменить тест</button></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="7">База данных пуста</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

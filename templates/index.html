@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+
+<h1>{{curr_greeting}}, дорогой друг</h1>
+<h3>На этом сайте ты можешь: </h3>
+<ul>
+    {% for m in menu %}
+    <li>{{m}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
