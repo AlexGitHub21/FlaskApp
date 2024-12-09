@@ -52,4 +52,6 @@ $(function(){
                 var test_id = $(this).data('test_id');
                 window.location.href = '/change_test/' + test_id;
             });
-        });
+
+            var isOnUnloadPage = false;
+    });

@@ -13,7 +13,9 @@
                 <th>Предпочтения посетителей</th>
                 <th>Получить ответ</th>
                 <th>Удалить тест</th>
-                <th>Изменить тест</th>
+                {% if current_user.role_type == 'user' %}
+                    <th>Изменить тест</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -27,7 +29,9 @@
                     <td>{{ test.visitor_preferences }}</td>
                     <td><button type="button" id="get_answer" data-test_id="{{ test.id }}" class="btn btn-outline-primary">Получить ответ</button></td>
                     <td><button type="button" id="delete_test" data-test_id="{{ test.id }}" class="btn btn-outline-primary">Удалить тест</button></td>
-                    <td><button type="button" id="change_test" data-test_id="{{ test.id }}" class="btn btn-outline-primary">Изменить тест</button></td>
+                    {% if current_user.role_type == 'user' %}
+                        <td><button type="button" id="change_test" data-test_id="{{ test.id }}" class="btn btn-outline-primary">Изменить тест</button></td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         {% else %}
@@ -37,5 +41,5 @@
         {% endif %}
         </tbody>
     </table>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 {% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+    <title>{{ title }}</title>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="/registration" method="post" class="form-regist">
+            {{ reg_form.hidden_tag() }}
+            <p>{{ reg_form.login.label() }} {{ reg_form.login() }}</p>
+            <p>{{ reg_form.psw.label() }} {{ reg_form.psw() }}</p>
+            <p>{{ reg_form.confirm_psw.label() }} {{reg_form.confirm_psw() }}</p>
+            <p>{{ reg_form.submit() }}</p>
+        </form>
+
+        {% for field, errors in reg_form.errors.items() %}
+            {% for error in errors %}
+                <div class="flash">{{ error }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {% for msg in get_flashed_messages() %}
+            <div class="flash">{{ msg }}</div>
+        {% endfor %}
+
+        {% if success %}
+        <script>
+            setTimeout(function() {
+                window.location.href = "{{ url_for('index') }}";
+                }, 1500);
+        </script>
+        {% endif %}
+    </div>
+</body>

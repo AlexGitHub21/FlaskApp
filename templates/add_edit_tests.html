@@ -33,7 +33,7 @@
     </form>
 
     {% for msg in get_flashed_messages() %}
-    <div class="flash">{{msg}}</div>
+        <div class="flash">{{msg}}</div>
     {% endfor %}
 
     <table border="1">
@@ -50,7 +50,11 @@
 
         {% if tests %}
             {% for test in tests %}
-                <tr>
+                <tr
+                    {% if active_test == test.id %}
+                        class="highlight"
+                    {% endif %}
+                >
                     <td>{{ test.number_rows }}</td>
                     <td>{{ test.number_seats }}</td>
                     <td>{{ test.number_visitors }}</td>

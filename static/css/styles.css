@@ -57,7 +57,11 @@
 /* Стилизуем пункты меню */
 .menu__list-item {
     margin-right: 20px; /* Добавляем отступ между пунктами меню */
+}
 
+/* Стилизуем пункты меню */
+.menu__2list-item {
+    margin-left: 100px; /* Добавляем отступ между пунктами меню */
 }
 
 /* Стилизуем ссылки в меню */
@@ -83,4 +87,62 @@ table {
 }
 td {
     text-align: center; /* Выравниваем текст по центру ячейки */
+}
+
+.block-form {
+    border-radius: 15px;
+}
+
+.wrapper {
+    display: grid;
+    min-height: 100vh; /* Занимаем всю высоту экрана */
+    place-items: center;
+    background-color: #f0f0f0; /* Необязательно: цвет фона */
+}
+
+.center-div, .form-login, .form-regist {
+    display: flex; /* Используем flexbox для центрирования */
+    flex-direction: column; /* Чтобы ссылки были друг под другом */
+    justify-content: center; /* Центрируем по горизонтали */
+    background-color: #ffffff; /* Необязательно: цвет фона блока */
+    padding: 20px; /* Внутренние отступы */
+    border: 2px solid #ccc; /* Рамка */
+    border-radius: 10px; /* Закругленные углы */
+    text-align: center; /* Центрируем текст внутри блока */
+}
+
+.div-registration, .div-login {
+    display: block; /* Уже было, но оставляем для ясности */
+    margin-bottom: 10px; /* Отступ между ссылками */
+    cursor:pointer;
+    border-width:1px;
+    border-style:solid;
+    background-color: #FAEBD7;
+    width:300px;
+    height:50px;
+    text-align:center;
+    text-decoration: none; /* Убирает подчеркивание */
+    line-height: 50px; /* Выравнивает текст по вертикали в ссылках */
+    color:#000000;
+}
+
+.div-registration:hover, .div-login:hover {
+    color: #eb3e30;
+}
+
+/* Убираем margin-bottom у последней ссылки, чтобы не было лишнего отступа */
+.div-login {
+    margin-bottom: 0;
+}
+.menu__list {
+    padding: 10px 20px; /* Увеличиваем вертикальный и горизонтальный отступы */
+    font-size: 20px; /* Уменьшаем размер шрифта */
+    color: #4169E1; /* Устанавливаем цвет ссылок */
+    cursor: pointer; /* Задаём изменение вида курсора при наведении на пункты меню */
+    transition: all 0.3s; /* Добавляем плавное изменение стилей при наведении */
+}
+
+.highlight {
+    background-color: #fadfd7;
+    font-weight: bold;
 }

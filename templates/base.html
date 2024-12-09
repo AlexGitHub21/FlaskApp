@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block title -%}
     {% if title %}
         <title>{{ title }}</title>
@@ -23,11 +24,22 @@
              <li class="menu__list-item">
                <a class="menu__list-link" href="{{ url_for('index') }}">Главная страница</a>
              </li>
-             <li class="menu__list-item">
-               <a class="menu__list-link" href="{{ url_for('test') }}">Добавить тест</a>
-             </li>
+             {% if current_user.role_type != 'admin' %}
+                <li class="menu__list-item">
+                    <a class="menu__list-link" href="{{ url_for('add_test') }}">Добавить тест</a>
+                </li>
+             {% endif %}
              <li class="menu__list-item">
                <a class="menu__list-link" href="{{ url_for('list_tests') }}">Список тестов</a>
+             </li>
+             <li class="menu__list-item">
+                 <div class="menu__list">Пользователь {{ current_user.login if current_user.is_authenticated else "неавторизован" }}</div>
+                 <a class="menu__list-link" href="{{ url_for('logout') if current_user.is_authenticated else url_for('login') }}">
+                    {{ "Выйти" if current_user.is_authenticated else "Войти" }}
+                 </a>
+                 {% if not current_user.is_authenticated %}
+                 <a class="menu__list-link" href="{{ url_for('registration') }}"> {{ "Регистрация" }} </a>
+               {% endif %}
              </li>
            </ul>
          </nav>

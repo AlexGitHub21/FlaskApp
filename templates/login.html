@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+    <title>{{ title }}</title>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="/login" method="post" class="form-login">
+            {{ form.hidden_tag() }}
+            <p>{{ form.login.label() }} {{ form.login() }}</p>
+            <p>{{ form.psw.label() }} {{ form.psw() }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>
+
+        {% for msg in get_flashed_messages() %}
+            <div class="flash">{{ msg }}</div>
+        {% endfor %}
+    </div>
+</body>
